@@ -17,10 +17,9 @@ export function decide(
 	return "defer";
 }
 
-export function recordJudgeFailure(log: AuthorizerLog, requestId: string, startedAt: number, error: unknown): string {
+export function recordJudgeFailure(log: AuthorizerLog, requestId: string, startedAt: number, error: unknown): void {
 	const message = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
 	log.review(DECISION_EVENT, { requestId, outcome: "defer", error: message, durationMs: Date.now() - startedAt });
-	return message;
 }
 
 export interface JudgeLinkDeps {
@@ -54,10 +53,10 @@ export function createAuthorize(deps: JudgeLinkDeps): Authorize {
 			result = await deps.judge.judge({ state: deps.state(details), questions: { verdict: question } }, { signal });
 		} catch (error) {
 			// A link must answer: deferring hands the ask to the next link or the user.
-			const message = recordJudgeFailure(log, details.requestId, startedAt, error);
+			recordJudgeFailure(log, details.requestId, startedAt, error);
 			if (!failureNotified) {
 				failureNotified = true;
-				deps.notify(`omp-permission-judge: the judge failed, asks go on unjudged (${message})`, "warning");
+				deps.notify("omp-permission-judge: the judge failed, asks go on unjudged; the permission review log has the error", "warning");
 			}
 			return { kind: "defer" };
 		}

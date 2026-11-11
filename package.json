@@ -31,9 +31,6 @@
       "./src/index.ts"
     ]
   },
-  "scripts": {
-    "check": "tsc --noEmit && bun test"
-  },
   "peerDependencies": {
     "@gotgenes/pi-permission-system": "^42.0.0"
   },

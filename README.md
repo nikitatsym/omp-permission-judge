@@ -102,10 +102,9 @@ session shows a warning.
 
 ## Development
 
-```bash
-bun install
-bun run check
-```
+`python3 dev.py check` (bun and uv on `PATH`) installs the dependencies and
+runs the type check, tackbox lint and the tests; CI and the pre-commit hook
+run the same command. `python3 dev.py hook` enables the hook in a clone.
 
 ## License
 
