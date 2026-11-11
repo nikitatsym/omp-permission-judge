@@ -1,0 +1,47 @@
+{
+  "name": "omp-permission-judge",
+  "version": "0.1.0",
+  "description": "pi-permission-system authorizer link for omp (oh-my-pi) that asks the omp judge model role to allow or deny a permission ask",
+  "keywords": [
+    "authorizer",
+    "judge",
+    "omp",
+    "oh-my-pi",
+    "permissions",
+    "pi-package"
+  ],
+  "license": "MIT",
+  "author": "Nikita Tsymbal <nikita.tsym@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikitatsym/omp-permission-judge.git"
+  },
+  "homepage": "https://github.com/nikitatsym/omp-permission-judge#readme",
+  "bugs": {
+    "url": "https://github.com/nikitatsym/omp-permission-judge/issues"
+  },
+  "type": "module",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  },
+  "scripts": {
+    "check": "tsc --noEmit && bun test"
+  },
+  "peerDependencies": {
+    "@gotgenes/pi-permission-system": "^42.0.0"
+  },
+  "devDependencies": {
+    "@gotgenes/pi-permission-system": "42.0.0",
+    "@oh-my-pi/pi-ai": "18.18.8",
+    "@oh-my-pi/pi-coding-agent": "18.18.8",
+    "@types/bun": "1.4.4",
+    "typescript": "7.0.2"
+  }
+}
